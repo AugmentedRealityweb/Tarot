@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const stripe = require("stripe");
 
+// Initializează Stripe cu cheia secretă din variabilele de mediu
 const stripeInstance = stripe(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
@@ -36,6 +37,6 @@ app.post("/create-checkout-session", async (req, res) => {
   }
 });
 
-// Rulează serverul pe portul 4242 sau portul oferit de Vercel
+// Rulează serverul pe portul oferit de Vercel
 const PORT = process.env.PORT || 4242;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
