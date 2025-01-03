@@ -251,7 +251,7 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  background: url('https://i.giphy.com/Aptv4n47PW6wu4arEd.webp') no-repeat center center fixed;
+  background: url('https://i.giphy.com/SrWh9peE9r1MTVr8aQ.webp') no-repeat center center fixed;
   background-size: cover;
   font-family: 'Poppins', sans-serif;
   color: white;
