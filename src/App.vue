@@ -20,6 +20,10 @@
           <p v-if="card.revealed" class="card-description"><strong>{{ card.name }}:</strong> {{ card.meaning }}</p>
         </div>
       </div>
+      <div class="final-description">
+        <h3>Descriere finală:</h3>
+        <p>{{ generateFinalDescription() }}</p>
+      </div>
     </div>
     <div class="donate">
       <h3>Donează pentru susținerea aplicației:</h3>
@@ -89,6 +93,36 @@ export default {
         rows.push(cards.slice(i, i + cardsPerRow));
       }
       return rows;
+    },
+    generateFinalDescription() {
+      if (!this.selectedCards.length) return '';
+
+      const themes = {
+        schimbare: 0,
+        iubire: 0,
+        conflict: 0,
+        transformare: 0,
+        introspecție: 0,
+        succes: 0
+      };
+
+      this.selectedCards.forEach(card => {
+        if (card.meaning.includes("schimbare")) themes.schimbare++;
+        if (card.meaning.includes("iubire")) themes.iubire++;
+        if (card.meaning.includes("conflict")) themes.conflict++;
+        if (card.meaning.includes("transformare")) themes.transformare++;
+        if (card.meaning.includes("introspecție")) themes.introspecție++;
+        if (card.meaning.includes("succes")) themes.succes++;
+      });
+
+      let description = "Această combinație de cărți sugerează: ";
+      for (const [theme, count] of Object.entries(themes)) {
+        if (count > 0) {
+          description += `${count} carte/cărți care simbolizează ${theme}, `;
+        }
+      }
+
+      return description.slice(0, -2) + ".";
     },
     donate() {
       alert("Funcționalitatea de donații va fi activată curând.");
@@ -175,6 +209,15 @@ h2 {
   font-size: 0.8rem;
   font-weight: 500;
   text-align: center;
+}
+
+.final-description {
+  margin-top: 20px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffd700;
+  border-radius: 10px;
+  font-size: 1rem;
 }
 
 .btn {
