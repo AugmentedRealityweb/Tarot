@@ -117,52 +117,58 @@ export default {
 
       const descriptions = [];
       if (themes.schimbare) {
-        const schimbareOptions = [
-          "Această extragere sugerează schimbări profunde și inevitabile în viața ta.",
-          "Transformările sunt iminente, aducând noi perspective și oportunități.",
-          "Această citire reflectă adaptări necesare pentru progresul personal."
+        const schimbareVariants = [
+          "Această extragere indică un puternic element de schimbare în viața ta.",
+          "Schimbările iminente vor aduce noi perspective și oportunități.",
+          "Transformări importante îți vor schimba cursul vieții.",
+          "Aceste cărți sugerează o perioadă de adaptare și evoluție."
         ];
-        descriptions.push(schimbareOptions[Math.floor(Math.random() * schimbareOptions.length)]);
+        descriptions.push(schimbareVariants[Math.floor(Math.random() * schimbareVariants.length)]);
       }
       if (themes.iubire) {
-        const iubireOptions = [
-          "Extragerea evidențiază iubirea ca un aspect central în această perioadă.",
-          "Această citire subliniază armonia și conexiunile emoționale profunde.",
-          "Dragostea și relațiile apropiate sunt în prim-planul acestei citiri."
+        const iubireVariants = [
+          "Extragerea subliniază aspecte legate de iubire și relații.",
+          "Dragostea joacă un rol central în această perioadă.",
+          "Relațiile tale vor cunoaște o aprofundare emoțională.",
+          "Cărțile indică armonie și conexiuni afective puternice."
         ];
-        descriptions.push(iubireOptions[Math.floor(Math.random() * iubireOptions.length)]);
+        descriptions.push(iubireVariants[Math.floor(Math.random() * iubireVariants.length)]);
       }
       if (themes.conflict) {
-        const conflictOptions = [
-          "Conflictele interioare sau exterioare ar putea apărea, necesitând atenție.",
-          "Această citire indică posibile tensiuni care necesită rezolvare.",
-          "Provocările pot fi depășite cu răbdare și înțelegere."
+        const conflictVariants = [
+          "Un posibil conflict sau tensiune este evident în cărțile extrase.",
+          "Confruntările ar putea deschide calea pentru înțelegere și rezolvare.",
+          "Există indicii ale unor provocări pe care va trebui să le depășești.",
+          "Tensiunile actuale vor necesita răbdare și diplomație."
         ];
-        descriptions.push(conflictOptions[Math.floor(Math.random() * conflictOptions.length)]);
+        descriptions.push(conflictVariants[Math.floor(Math.random() * conflictVariants.length)]);
       }
       if (themes.transformare) {
-        const transformareOptions = [
-          "Transformarea personală este cheia succesului în această etapă.",
-          "Această citire reflectă un proces profund de schimbare interioară.",
-          "Reînnoirea și evoluția personală sunt bine evidențiate aici."
+        const transformareVariants = [
+          "Transformarea personală este un aspect central al acestei citiri.",
+          "Schimbările interioare te vor ghida către un nou început.",
+          "Această perioadă marchează o renaștere emoțională și spirituală.",
+          "Cărțile subliniază importanța adaptării și creșterii personale."
         ];
-        descriptions.push(transformareOptions[Math.floor(Math.random() * transformareOptions.length)]);
+        descriptions.push(transformareVariants[Math.floor(Math.random() * transformareVariants.length)]);
       }
       if (themes.introspecție) {
-        const introspectieOptions = [
-          "Această perioadă necesită introspecție și explorare interioară.",
-          "Citirea subliniază importanța momentelor de reflecție personală.",
-          "Claritatea interioară poate fi obținută prin autoanaliză profundă."
+        const introspectieVariants = [
+          "Citirea sugerează introspecție și căutarea răspunsurilor interioare.",
+          "Este momentul să îți analizezi prioritățile și să îți asculți intuiția.",
+          "Timpul petrecut reflectând te va ajuta să iei decizii clare.",
+          "Cărțile îți recomandă să te concentrezi pe auto-descoperire."
         ];
-        descriptions.push(introspectieOptions[Math.floor(Math.random() * introspectieOptions.length)]);
+        descriptions.push(introspectieVariants[Math.floor(Math.random() * introspectieVariants.length)]);
       }
       if (themes.succes) {
-        const succesOptions = [
-          "Succesul este aproape, reflectând eforturile depuse până acum.",
-          "Această citire indică realizări și satisfacție în viitorul apropiat.",
-          "Rezultatele pozitive sunt în prim-plan, evidențiind succesul."
+        const succesVariants = [
+          "Succesul și realizările sunt bine evidențiate în această extragere.",
+          "Eforturile tale vor fi răsplătite cu rezultate favorabile.",
+          "Această perioadă este marcată de recunoaștere și împliniri.",
+          "Cărțile indică o etapă de progres și reușite semnificative."
         ];
-        descriptions.push(succesOptions[Math.floor(Math.random() * succesOptions.length)]);
+        descriptions.push(succesVariants[Math.floor(Math.random() * succesVariants.length)]);
       }
 
       return descriptions.join(' ');
@@ -277,4 +283,34 @@ h2 {
 }
 
 .btn:hover {
-  background: linear-gradient(45deg, #ff9900, #cc6600
+  background: linear-gradient(45deg, #ff9900, #cc6600);
+  transform: translateY(-2px);
+}
+
+.donate {
+  margin-top: 20px;
+}
+
+.donate-btn {
+  background: linear-gradient(45deg, #66ff99, #33cc66);
+  color: black;
+  font-weight: bold;
+}
+
+.donate-btn:hover {
+  background: linear-gradient(45deg, #33cc66, #009933);
+}
+
+@media (max-width: 768px) {
+  .card-row {
+    gap: 1px;
+  }
+  .card-image {
+    width: 40px;
+  }
+  .btn {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+}
+</style>
