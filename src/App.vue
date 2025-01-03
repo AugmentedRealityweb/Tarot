@@ -15,9 +15,11 @@
       <h2>Citirea ta:</h2>
       <div v-for="row in splitCards(selectedCards, 5)" :key="row[0].name" class="card-row">
         <div v-for="card in row" :key="card.name" class="card" @click="revealMeaning(card)">
-          <img :src="card.image" :alt="card.name" class="card-image" />
-          <p v-if="!card.revealed" class="hint">Apasă pe carte pentru semnificație</p>
-          <p v-if="card.revealed" class="card-description"><strong>{{ card.name }}:</strong> {{ card.meaning }}</p>
+          <div class="card-inner" :class="{'flipped': card.revealed}">
+            <img :src="card.image" :alt="card.name" class="card-image" />
+            <p v-if="!card.revealed" class="hint">Apasă pe carte pentru semnificație</p>
+            <p v-if="card.revealed" class="card-description"><strong>{{ card.name }}:</strong> {{ card.meaning }}</p>
+          </div>
         </div>
       </div>
       <div class="final-description">
@@ -222,7 +224,7 @@ export default {
       for (const [theme, count] of Object.entries(themes)) {
         if (count > 0) {
           const randomDescription = descriptions[theme][Math.floor(Math.random() * descriptions[theme].length)];
-          finalDescription += `${randomDescription} `;
+          finalDescription += ${randomDescription} ;
         }
       }
 
@@ -287,11 +289,36 @@ h2 {
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: fit-content;
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-image, .card-description {
+  backface-visibility: hidden;
+}
+
+.card-description {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
 }
 
 .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .card-image {
@@ -306,13 +333,6 @@ h2 {
   font-size: 0.7rem;
   font-style: italic;
   color: #ccc;
-}
-
-.card-description {
-  margin-top: 5px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-align: center;
 }
 
 .final-description {
