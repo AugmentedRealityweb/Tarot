@@ -178,7 +178,7 @@ export default {
         }
       }
 
-      return finalDescription.trim();
+      return finalDescription.trim() || "Această extragere nu are o interpretare directă, dar simbolurile ei pot avea semnificații unice pentru tine. Încearcă să extragi din nou.";
     },
     donate() {
       alert("Funcționalitatea de donații va fi activată curând.");
