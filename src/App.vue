@@ -15,7 +15,6 @@
     <div v-if="selectedCards.length" class="reading">
       <h2>Citirea ta:</h2>
       <div v-for="row in splitCards(selectedCards, 5)" :key="row[0].name" class="card-row">
-        <!-- Observați că aici folosim (card, index) în loc de card simplu -->
         <div 
           v-for="(card, index) in row" 
           :key="card.name" 
@@ -30,6 +29,7 @@
           </p>
         </div>
       </div>
+
       <div class="final-description">
         <h3>Descriere finală:</h3>
         <p>{{ generateFinalDescription() }}</p>
@@ -38,6 +38,7 @@
 
     <div class="donate">
       <h3>Donează pentru susținerea aplicației:</h3>
+      <!-- Folosim un form, dar metoda donate() trimite către Stripe -->
       <form @submit.prevent="donate">
         <button class="btn donate-btn">Donează</button>
       </form>
@@ -46,6 +47,8 @@
 </template>
 
 <script>
+import { loadStripe } from "@stripe/stripe-js";
+
 export default {
   data() {
     return {
@@ -78,10 +81,12 @@ export default {
     };
   },
   methods: {
+    // Metodă pentru a alege tipul de citire și a genera extragerea
     setMode(mode) {
       this.mode = mode;
       this.generateReading();
     },
+    // Generarea unui număr de cărți în funcție de tipul de citire
     generateReading() {
       let numCards = 1;
       if (this.mode === '3-cards') numCards = 3;
@@ -95,9 +100,11 @@ export default {
       const shuffled = this.cards.sort(() => 0.5 - Math.random());
       this.selectedCards = shuffled.slice(0, numCards);
     },
+    // Marchează cartea ca fiind dezvăluită
     revealMeaning(card) {
       card.revealed = true;
     },
+    // Split array-ul de cărți în rânduri de max. 5 cărți
     splitCards(cards, cardsPerRow) {
       const rows = [];
       for (let i = 0; i < cards.length; i += cardsPerRow) {
@@ -105,6 +112,7 @@ export default {
       }
       return rows;
     },
+    // Generarea descrierii finale pe baza cuvintelor-cheie din semnificațiile cărților
     generateFinalDescription() {
       if (!this.selectedCards.length) return '';
 
@@ -232,15 +240,33 @@ export default {
       let finalDescription = "";
       for (const [theme, count] of Object.entries(themes)) {
         if (count > 0) {
-          const randomDescription = descriptions[theme][Math.floor(Math.random() * descriptions[theme].length)];
+          const randomDescription =
+            descriptions[theme][Math.floor(Math.random() * descriptions[theme].length)];
           finalDescription += `${randomDescription} `;
         }
       }
 
-      return finalDescription.trim() || "Această extragere nu are o interpretare directă, dar simbolurile ei pot avea semnificații unice pentru tine. Încearcă să extragi din nou.";
+      return (
+        finalDescription.trim() ||
+        "Această extragere nu are o interpretare directă, dar simbolurile ei pot avea semnificații unice pentru tine. Încearcă să extragi din nou."
+      );
     },
-    donate() {
-      alert("Funcționalitatea de donații va fi activată curând.");
+    // Metoda de donație cu Stripe
+    async donate() {
+      try {
+        const response = await fetch("https://citiretarot.vercel.app/create-checkout-session", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const session = await response.json();
+        const stripe = await loadStripe("pk_live_51LhHVFJOzg3eyu5LJRnplRv2AKh0MGJEew4HhNbn3Eu2LfJkbZUv2j4lFNxulY5ugbb6wrh07QCaX0djdFnQ8f7A00tyuYKXEL");
+        await stripe.redirectToCheckout({ sessionId: session.id });
+      } catch (error) {
+        console.error("Error la redirecționarea către Stripe:", error);
+      }
     }
   }
 };
@@ -301,17 +327,10 @@ h2 {
   padding: 0;
   text-align: center;
   width: fit-content;
-
-  /* Opacitate inițială pentru efectul de "fade in" */
-  opacity: 0;
+  opacity: 0; /* Opacitate inițială pentru efectul de "fade in" */
   transform: translateY(20px);
-
-  /* Animația */
-  animation: cardEnter 0.5s forwards ease;
-  /* Delay pentru fiecare carte, bazat pe index */
-  animation-delay: calc(var(--delay) * 0.1s);
-
-  /* Efectul de hover deja existent */
+  animation: cardEnter 0.5s forwards ease; /* Animația */
+  animation-delay: calc(var(--delay) * 0.1s); /* Delay pentru fiecare carte, bazat pe index */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
