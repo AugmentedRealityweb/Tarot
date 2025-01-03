@@ -14,8 +14,11 @@
     <div v-if="selectedCards.length" class="reading">
       <h2>Citirea ta:</h2>
       <div v-for="row in splitCards(selectedCards, 5)" :key="row[0].name" class="card-row">
-        <img v-for="card in row" :key="card.name" :src="card.image" :alt="card.name" class="card-image" @click="revealMeaning(card)" />
-        <p v-for="card in row" :key="'desc-' + card.name" v-if="card.revealed" class="card-description"><strong>{{ card.name }}:</strong> {{ card.meaning }}</p>
+        <div v-for="card in row" :key="card.name" class="card" @click="revealMeaning(card)">
+          <img :src="card.image" :alt="card.name" class="card-image" />
+          <p v-if="!card.revealed" class="hint">Apasă pe carte pentru semnificație</p>
+          <p v-if="card.revealed" class="card-description"><strong>{{ card.name }}:</strong> {{ card.meaning }}</p>
+        </div>
       </div>
     </div>
     <div class="donate">
@@ -137,11 +140,34 @@ h2 {
   margin-bottom: 5px;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: fit-content;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
 .card-image {
   width: 50px;
   height: auto;
   border-radius: 5px;
   border: 1px solid #ffd700;
+}
+
+.hint {
+  margin-top: 3px;
+  font-size: 0.7rem;
+  font-style: italic;
+  color: #ccc;
 }
 
 .card-description {
