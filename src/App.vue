@@ -103,7 +103,9 @@ export default {
         conflict: 0,
         transformare: 0,
         introspecție: 0,
-        succes: 0
+        succes: 0,
+        speranță: 0,
+        vindecare: 0
       };
 
       this.selectedCards.forEach(card => {
@@ -113,63 +115,19 @@ export default {
         if (card.meaning.includes("transformare")) themes.transformare++;
         if (card.meaning.includes("introspecție")) themes.introspecție++;
         if (card.meaning.includes("succes")) themes.succes++;
+        if (card.meaning.includes("speranță")) themes.speranță++;
+        if (card.meaning.includes("vindecare")) themes.vindecare++;
       });
 
       const descriptions = [];
-      if (themes.schimbare) {
-        const schimbareVariants = [
-          "Această extragere indică un puternic element de schimbare în viața ta.",
-          "Schimbările iminente vor aduce noi perspective și oportunități.",
-          "Transformări importante îți vor schimba cursul vieții.",
-          "Aceste cărți sugerează o perioadă de adaptare și evoluție."
-        ];
-        descriptions.push(schimbareVariants[Math.floor(Math.random() * schimbareVariants.length)]);
-      }
-      if (themes.iubire) {
-        const iubireVariants = [
-          "Extragerea subliniază aspecte legate de iubire și relații.",
-          "Dragostea joacă un rol central în această perioadă.",
-          "Relațiile tale vor cunoaște o aprofundare emoțională.",
-          "Cărțile indică armonie și conexiuni afective puternice."
-        ];
-        descriptions.push(iubireVariants[Math.floor(Math.random() * iubireVariants.length)]);
-      }
-      if (themes.conflict) {
-        const conflictVariants = [
-          "Un posibil conflict sau tensiune este evident în cărțile extrase.",
-          "Confruntările ar putea deschide calea pentru înțelegere și rezolvare.",
-          "Există indicii ale unor provocări pe care va trebui să le depășești.",
-          "Tensiunile actuale vor necesita răbdare și diplomație."
-        ];
-        descriptions.push(conflictVariants[Math.floor(Math.random() * conflictVariants.length)]);
-      }
-      if (themes.transformare) {
-        const transformareVariants = [
-          "Transformarea personală este un aspect central al acestei citiri.",
-          "Schimbările interioare te vor ghida către un nou început.",
-          "Această perioadă marchează o renaștere emoțională și spirituală.",
-          "Cărțile subliniază importanța adaptării și creșterii personale."
-        ];
-        descriptions.push(transformareVariants[Math.floor(Math.random() * transformareVariants.length)]);
-      }
-      if (themes.introspecție) {
-        const introspectieVariants = [
-          "Citirea sugerează introspecție și căutarea răspunsurilor interioare.",
-          "Este momentul să îți analizezi prioritățile și să îți asculți intuiția.",
-          "Timpul petrecut reflectând te va ajuta să iei decizii clare.",
-          "Cărțile îți recomandă să te concentrezi pe auto-descoperire."
-        ];
-        descriptions.push(introspectieVariants[Math.floor(Math.random() * introspectieVariants.length)]);
-      }
-      if (themes.succes) {
-        const succesVariants = [
-          "Succesul și realizările sunt bine evidențiate în această extragere.",
-          "Eforturile tale vor fi răsplătite cu rezultate favorabile.",
-          "Această perioadă este marcată de recunoaștere și împliniri.",
-          "Cărțile indică o etapă de progres și reușite semnificative."
-        ];
-        descriptions.push(succesVariants[Math.floor(Math.random() * succesVariants.length)]);
-      }
+      if (themes.schimbare) descriptions.push(`Această extragere indică un puternic element de schimbare în viața ta.`);
+      if (themes.iubire) descriptions.push(`Extragerea subliniază aspecte legate de iubire și relații.`);
+      if (themes.conflict) descriptions.push(`Un posibil conflict sau tensiune este evident în cărțile extrase.`);
+      if (themes.transformare) descriptions.push(`Transformarea personală este un aspect central al acestei citiri.`);
+      if (themes.introspecție) descriptions.push(`Citirea sugerează introspecție și căutarea răspunsurilor interioare.`);
+      if (themes.succes) descriptions.push(`Succesul și realizările sunt bine evidențiate în această extragere.`);
+      if (themes.speranță) descriptions.push(`Această extragere aduce un mesaj de optimism și încredere în viitor.`);
+      if (themes.vindecare) descriptions.push(`Citirea sugerează o perioadă de regenerare și echilibrare interioară.`);
 
       return descriptions.join(' ');
     },
