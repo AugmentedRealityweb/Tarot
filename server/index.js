@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const stripe = require("stripe");
 
-// Initializează Stripe cu cheia secretă din variabilele de mediu
 const stripeInstance = stripe(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
@@ -21,14 +20,14 @@ app.post("/create-checkout-session", async (req, res) => {
             product_data: {
               name: "Donație Tarot",
             },
-            unit_amount: 200, // 5 RON (în bani - 500 bani = 5 RON)
+            unit_amount: 200, // 500 bani = 5 RON
           },
           quantity: 1,
         },
       ],
       mode: "payment",
-      success_url: "http://localhost:5173/success",
-      cancel_url: "http://localhost:5173/cancel",
+      success_url: `${req.headers.origin}/success`, // URL-ul pentru succes
+      cancel_url: `${req.headers.origin}/cancel`, // URL-ul pentru anulare
     });
 
     res.json({ id: session.id });
@@ -37,6 +36,6 @@ app.post("/create-checkout-session", async (req, res) => {
   }
 });
 
-// Rulează serverul
+// Rulează serverul pe portul 4242 sau portul oferit de Vercel
 const PORT = process.env.PORT || 4242;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
