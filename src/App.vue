@@ -136,8 +136,8 @@ h2 {
 .card-row {
   display: flex;
   justify-content: space-between;
-  gap: 1px;
-  margin-bottom: 2px;
+  gap: 2px;
+  margin-bottom: 5px;
 }
 
 .card {
@@ -145,8 +145,10 @@ h2 {
   flex-direction: column;
   align-items: center;
   margin: 0;
+  padding: 0;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: fit-content;
 }
 
 .card:hover {
@@ -172,6 +174,7 @@ h2 {
   margin-top: 5px;
   font-size: 0.8rem;
   font-weight: 500;
+  text-align: center;
 }
 
 .btn {
