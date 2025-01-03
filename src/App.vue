@@ -115,14 +115,15 @@ export default {
         if (card.meaning.includes("succes")) themes.succes++;
       });
 
-      let description = "Această combinație de cărți sugerează: ";
-      for (const [theme, count] of Object.entries(themes)) {
-        if (count > 0) {
-          description += `${count} carte/cărți care simbolizează ${theme}, `;
-        }
-      }
+      const descriptions = [];
+      if (themes.schimbare) descriptions.push(`Această extragere indică un puternic element de schimbare în viața ta.`);
+      if (themes.iubire) descriptions.push(`Extragerea subliniază aspecte legate de iubire și relații.`);
+      if (themes.conflict) descriptions.push(`Un posibil conflict sau tensiune este evident în cărțile extrase.`);
+      if (themes.transformare) descriptions.push(`Transformarea personală este un aspect central al acestei citiri.`);
+      if (themes.introspecție) descriptions.push(`Citirea sugerează introspecție și căutarea răspunsurilor interioare.`);
+      if (themes.succes) descriptions.push(`Succesul și realizările sunt bine evidențiate în această extragere.`);
 
-      return description.slice(0, -2) + ".";
+      return descriptions.join(' ');
     },
     donate() {
       alert("Funcționalitatea de donații va fi activată curând.");
