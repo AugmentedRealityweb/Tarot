@@ -144,7 +144,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 5px;
+  margin: 2px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -155,7 +155,7 @@ h2 {
 }
 
 .card-image {
-  width: 80px;
+  width: 70px;
   height: auto;
   border-radius: 10px;
   border: 2px solid #ffd700;
@@ -208,10 +208,10 @@ h2 {
 
 @media (max-width: 768px) {
   .card-row {
-    gap: 3px;
+    gap: 2px;
   }
   .card-image {
-    width: 70px;
+    width: 50px;
   }
   .btn {
     padding: 8px 15px;
