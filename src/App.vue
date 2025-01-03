@@ -136,8 +136,8 @@ h2 {
 .card-row {
   display: flex;
   justify-content: space-between;
-  gap: 2px;
-  margin-bottom: 5px;
+  gap: 1px;
+  margin-bottom: 2px;
 }
 
 .card {
