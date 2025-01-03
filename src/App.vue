@@ -135,42 +135,42 @@ h2 {
 
 .card-row {
   display: flex;
-  justify-content: center;
-  gap: 5px;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  gap: 2px;
+  margin-bottom: 5px;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2px;
+  margin: 0;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .card-image {
-  width: 70px;
+  width: 50px;
   height: auto;
-  border-radius: 10px;
-  border: 2px solid #ffd700;
+  border-radius: 5px;
+  border: 1px solid #ffd700;
 }
 
 .hint {
-  margin-top: 5px;
-  font-size: 0.8rem;
+  margin-top: 3px;
+  font-size: 0.7rem;
   font-style: italic;
   color: #ccc;
 }
 
 .card-description {
-  margin-top: 10px;
-  font-size: 1rem;
+  margin-top: 5px;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
@@ -178,22 +178,22 @@ h2 {
   background: linear-gradient(45deg, #ffcc00, #ff9900);
   color: black;
   border: none;
-  padding: 10px 20px;
-  font-size: 0.9rem;
+  padding: 8px 15px;
+  font-size: 0.8rem;
   font-weight: bold;
-  border-radius: 25px;
+  border-radius: 20px;
   cursor: pointer;
-  margin: 10px;
+  margin: 8px;
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .btn:hover {
   background: linear-gradient(45deg, #ff9900, #cc6600);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 .donate {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .donate-btn {
@@ -208,14 +208,14 @@ h2 {
 
 @media (max-width: 768px) {
   .card-row {
-    gap: 2px;
+    gap: 1px;
   }
   .card-image {
-    width: 50px;
+    width: 40px;
   }
   .btn {
-    padding: 8px 15px;
-    font-size: 0.8rem;
+    padding: 6px 12px;
+    font-size: 0.7rem;
   }
 }
 </style>
