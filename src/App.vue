@@ -97,139 +97,139 @@ export default {
       return rows;
     },
     generateFinalDescription() {
-      if (!this.selectedCards.length) return '';
+  if (!this.selectedCards.length) return '';
 
-      const themes = {
-        schimbare: 0,
-        iubire: 0,
-        conflict: 0,
-        transformare: 0,
-        introspecție: 0,
-        succes: 0,
-        speranță: 0,
-        vindecare: 0
-      };
+  const themes = {
+    schimbare: 0,
+    iubire: 0,
+    conflict: 0,
+    transformare: 0,
+    introspecție: 0,
+    succes: 0,
+    speranță: 0,
+    vindecare: 0
+  };
 
-      this.selectedCards.forEach(card => {
-        if (card.meaning.includes("schimbare")) themes.schimbare++;
-        if (card.meaning.includes("iubire")) themes.iubire++;
-        if (card.meaning.includes("conflict")) themes.conflict++;
-        if (card.meaning.includes("transformare")) themes.transformare++;
-        if (card.meaning.includes("introspecție")) themes.introspecție++;
-        if (card.meaning.includes("succes")) themes.succes++;
-        if (card.meaning.includes("speranță")) themes.speranță++;
-        if (card.meaning.includes("vindecare")) themes.vindecare++;
-      });
+  this.selectedCards.forEach(card => {
+    if (card.meaning.includes("schimbare")) themes.schimbare++;
+    if (card.meaning.includes("iubire")) themes.iubire++;
+    if (card.meaning.includes("conflict")) themes.conflict++;
+    if (card.meaning.includes("transformare")) themes.transformare++;
+    if (card.meaning.includes("introspecție")) themes.introspecție++;
+    if (card.meaning.includes("succes")) themes.succes++;
+    if (card.meaning.includes("speranță")) themes.speranță++;
+    if (card.meaning.includes("vindecare")) themes.vindecare++;
+  });
 
-      const descriptions = {
-  schimbare: [
-    "Această extragere indică un puternic element de schimbare în viața ta.",
-    "Schimbările ce urmează pot aduce perspective noi și oportunități neașteptate.",
-    "Pregătește-te pentru o perioadă de tranziție și creștere.",
-    "Transformările din viața ta vor aduce claritate și direcție.",
-    "Un nou început este aproape; îmbrățișează-l cu încredere.",
-    "Schimbările externe reflectă evoluția ta interioară.",
-    "Această etapă va redefini prioritățile și valorile tale.",
-    "Fii deschis la adaptare, pentru că surprizele vor fi pozitive.",
-    "Ceea ce pare instabil acum va deveni fundația viitorului tău.",
-    "Acum este momentul să lași în urmă ceea ce nu mai servește scopului tău."
-  ],
-  iubire: [
-    "Extragerea subliniază aspecte legate de iubire și relații.",
-    "Acest moment este favorabil pentru conexiuni emoționale profunde.",
-    "Iubirea și armonia joacă un rol central în viața ta acum.",
-    "O relație importantă ar putea evolua semnificativ.",
-    "Este un moment propice pentru a întări legăturile existente.",
-    "Dragostea îți oferă lecții valoroase despre tine însuți.",
-    "Relațiile noi ar putea aduce bucurie neașteptată.",
-    "Inima ta este gata să accepte iubirea autentică.",
-    "Empatia și compasiunea îți vor ghida acțiunile în relații.",
-    "Cei dragi îți oferă sprijinul de care ai nevoie acum."
-  ],
-  conflict: [
-    "Un posibil conflict sau tensiune este evident în cărțile extrase.",
-    "Ai putea întâmpina obstacole ce necesită răbdare și înțelepciune.",
-    "Conflictele actuale pot duce la înțelegeri mai profunde.",
-    "Este un moment potrivit să rezolvi tensiunile din viața ta.",
-    "Fii atent la comunicare pentru a evita neînțelegerile.",
-    "Un compromis ar putea fi cheia rezolvării unei dispute.",
-    "Tensiunea prezentă poate fi un catalizator pentru schimbare pozitivă.",
-    "Conflictele te ajută să îți clarifici valorile și limitele.",
-    "Gestionarea calmă a provocărilor va aduce rezultate favorabile.",
-    "Este momentul să confrunți problemele cu curaj și deschidere."
-  ],
-  transformare: [
-    "Transformarea personală este un aspect central al acestei citiri.",
-    "Această perioadă simbolizează renașterea și noile începuturi.",
-    "Te afli într-un proces profund de schimbare interioară.",
-    "Acest moment te invită să renunți la trecut și să îmbrățișezi noul.",
-    "Evoluția ta va atrage noi oportunități și perspective.",
-    "Transformările externe reflectă creșterea ta spirituală.",
-    "Este timpul să eliberezi bagajele emoționale vechi.",
-    "Schimbările actuale îți vor deschide calea către auto-descoperire.",
-    "Fii deschis la reinventare și acceptă necunoscutul.",
-    "Transformările majore aduc claritate asupra scopului tău."
-  ],
-  introspecție: [
-    "Citirea sugerează introspecție și căutarea răspunsurilor interioare.",
-    "Este un moment potrivit pentru auto-reflecție și claritate.",
-    "Explorarea gândurilor interioare îți poate aduce pace și direcție.",
-    "Conectează-te cu tine însuți pentru a descoperi adevărul interior.",
-    "Meditația și liniștea te vor ghida spre răspunsuri importante.",
-    "Acordă-ți timp să înțelegi ce este cu adevărat important pentru tine.",
-    "În tăcere vei găsi răspunsuri la întrebările tale cele mai profunde.",
-    "Reflecția asupra trecutului te va pregăti pentru viitor.",
-    "Auto-cunoașterea este cheia creșterii personale în acest moment.",
-    "Aprofundarea legăturii cu sinele tău va aduce echilibru."
-  ],
-  succes: [
-    "Succesul și realizările sunt bine evidențiate în această extragere.",
-    "Eforturile tale vor fi răsplătite cu rezultate semnificative.",
-    "Te așteaptă o perioadă de recunoaștere și împlinire.",
-    "Munca ta va aduce roade pe măsura eforturilor depuse.",
-    "Realizările tale vor inspira pe cei din jurul tău.",
-    "Succesul tău este rezultatul perseverenței și dedicării.",
-    "Este momentul să sărbătorești victoriile tale recente.",
-    "Recunoașterea publică îți va consolida încrederea în tine.",
-    "Rezultatele pozitive confirmă că ești pe calea cea bună.",
-    "Este o perioadă favorabilă pentru a atinge noi obiective."
-  ],
-  speranță: [
-    "Această extragere aduce un mesaj de optimism și încredere în viitor.",
-    "Chiar și în momentele dificile, există lumină la capătul tunelului.",
-    "Speranța îți va ghida pașii spre noi oportunități.",
-    "Este momentul să privești înainte cu curaj și credință.",
-    "Încrederea în viitor îți aduce puterea de a persevera.",
-    "Lumina speranței strălucește chiar și în cele mai întunecate momente.",
-    "Acest moment te invită să îți menții optimismul și motivația.",
-    "Credința că lucrurile se vor îmbunătăți este cheia succesului tău.",
-    "Chiar și obstacolele actuale vor deschide calea către oportunități noi.",
-    "Rămâi centrat pe posibilitățile pozitive din viața ta."
-  ],
-  vindecare: [
-    "Citirea sugerează o perioadă de regenerare și echilibrare interioară.",
-    "Este timpul să te eliberezi de durerea trecutului.",
-    "Vindecarea te va ajuta să mergi mai departe cu forțe noi.",
-    "Această etapă îți oferă șansa de a găsi pacea interioară.",
-    "Procesele de vindecare îți deschid calea către creștere personală.",
-    "Acceptarea și iertarea sunt esențiale pentru regenerare.",
-    "Acum este momentul să prioritizezi bunăstarea ta emoțională.",
-    "Fii blând cu tine însuți în acest proces de transformare.",
-    "Vindecarea aduce claritate și armonie în viața ta.",
-    "Această perioadă îți oferă oportunitatea de a te reconecta cu tine însuți."
-  ]
-};
+  const descriptions = {
+    schimbare: [
+      "Această extragere indică un puternic element de schimbare în viața ta.",
+      "Schimbările ce urmează pot aduce perspective noi și oportunități neașteptate.",
+      "Pregătește-te pentru o perioadă de tranziție și creștere.",
+      "Transformările din viața ta vor aduce claritate și direcție.",
+      "Un nou început este aproape; îmbrățișează-l cu încredere.",
+      "Schimbările externe reflectă evoluția ta interioară.",
+      "Această etapă va redefini prioritățile și valorile tale.",
+      "Fii deschis la adaptare, pentru că surprizele vor fi pozitive.",
+      "Ceea ce pare instabil acum va deveni fundația viitorului tău.",
+      "Acum este momentul să lași în urmă ceea ce nu mai servește scopului tău."
+    ],
+    iubire: [
+      "Extragerea subliniază aspecte legate de iubire și relații.",
+      "Acest moment este favorabil pentru conexiuni emoționale profunde.",
+      "Iubirea și armonia joacă un rol central în viața ta acum.",
+      "O relație importantă ar putea evolua semnificativ.",
+      "Este un moment propice pentru a întări legăturile existente.",
+      "Dragostea îți oferă lecții valoroase despre tine însuți.",
+      "Relațiile noi ar putea aduce bucurie neașteptată.",
+      "Inima ta este gata să accepte iubirea autentică.",
+      "Empatia și compasiunea îți vor ghida acțiunile în relații.",
+      "Cei dragi îți oferă sprijinul de care ai nevoie acum."
+    ],
+    conflict: [
+      "Un posibil conflict sau tensiune este evident în cărțile extrase.",
+      "Ai putea întâmpina obstacole ce necesită răbdare și înțelepciune.",
+      "Conflictele actuale pot duce la înțelegeri mai profunde.",
+      "Este un moment potrivit să rezolvi tensiunile din viața ta.",
+      "Fii atent la comunicare pentru a evita neînțelegerile.",
+      "Un compromis ar putea fi cheia rezolvării unei dispute.",
+      "Tensiunea prezentă poate fi un catalizator pentru schimbare pozitivă.",
+      "Conflictele te ajută să îți clarifici valorile și limitele.",
+      "Gestionarea calmă a provocărilor va aduce rezultate favorabile.",
+      "Este momentul să confrunți problemele cu curaj și deschidere."
+    ],
+    transformare: [
+      "Transformarea personală este un aspect central al acestei citiri.",
+      "Această perioadă simbolizează renașterea și noile începuturi.",
+      "Te afli într-un proces profund de schimbare interioară.",
+      "Acest moment te invită să renunți la trecut și să îmbrățișezi noul.",
+      "Evoluția ta va atrage noi oportunități și perspective.",
+      "Transformările externe reflectă creșterea ta spirituală.",
+      "Este timpul să eliberezi bagajele emoționale vechi.",
+      "Schimbările actuale îți vor deschide calea către auto-descoperire.",
+      "Fii deschis la reinventare și acceptă necunoscutul.",
+      "Transformările majore aduc claritate asupra scopului tău."
+    ],
+    introspecție: [
+      "Citirea sugerează introspecție și căutarea răspunsurilor interioare.",
+      "Este un moment potrivit pentru auto-reflecție și claritate.",
+      "Explorarea gândurilor interioare îți poate aduce pace și direcție.",
+      "Conectează-te cu tine însuți pentru a descoperi adevărul interior.",
+      "Meditația și liniștea te vor ghida spre răspunsuri importante.",
+      "Acordă-ți timp să înțelegi ce este cu adevărat important pentru tine.",
+      "În tăcere vei găsi răspunsuri la întrebările tale cele mai profunde.",
+      "Reflecția asupra trecutului te va pregăti pentru viitor.",
+      "Auto-cunoașterea este cheia creșterii personale în acest moment.",
+      "Aprofundarea legăturii cu sinele tău va aduce echilibru."
+    ],
+    succes: [
+      "Succesul și realizările sunt bine evidențiate în această extragere.",
+      "Eforturile tale vor fi răsplătite cu rezultate semnificative.",
+      "Te așteaptă o perioadă de recunoaștere și împlinire.",
+      "Munca ta va aduce roade pe măsura eforturilor depuse.",
+      "Realizările tale vor inspira pe cei din jurul tău.",
+      "Succesul tău este rezultatul perseverenței și dedicării.",
+      "Este momentul să sărbătorești victoriile tale recente.",
+      "Recunoașterea publică îți va consolida încrederea în tine.",
+      "Rezultatele pozitive confirmă că ești pe calea cea bună.",
+      "Este o perioadă favorabilă pentru a atinge noi obiective."
+    ],
+    speranță: [
+      "Această extragere aduce un mesaj de optimism și încredere în viitor.",
+      "Chiar și în momentele dificile, există lumină la capătul tunelului.",
+      "Speranța îți va ghida pașii spre noi oportunități.",
+      "Este momentul să privești înainte cu curaj și credință.",
+      "Încrederea în viitor îți aduce puterea de a persevera.",
+      "Lumina speranței strălucește chiar și în cele mai întunecate momente.",
+      "Acest moment te invită să îți menții optimismul și motivația.",
+      "Credința că lucrurile se vor îmbunătăți este cheia succesului tău.",
+      "Chiar și obstacolele actuale vor deschide calea către oportunități noi.",
+      "Rămâi centrat pe posibilitățile pozitive din viața ta."
+    ],
+    vindecare: [
+      "Citirea sugerează o perioadă de regenerare și echilibrare interioară.",
+      "Este timpul să te eliberezi de durerea trecutului.",
+      "Vindecarea te va ajuta să mergi mai departe cu forțe noi.",
+      "Această etapă îți oferă șansa de a găsi pacea interioară.",
+      "Procesele de vindecare îți deschid calea către creștere personală.",
+      "Acceptarea și iertarea sunt esențiale pentru regenerare.",
+      "Acum este momentul să prioritizezi bunăstarea ta emoțională.",
+      "Fii blând cu tine însuți în acest proces de transformare.",
+      "Vindecarea aduce claritate și armonie în viața ta.",
+      "Această perioadă îți oferă oportunitatea de a te reconecta cu tine însuți."
+    ]
+  };
 
-      let finalDescription = "";
-      for (const [theme, count] of Object.entries(themes)) {
-        if (count > 0) {
-          const randomDescription = descriptions[theme][Math.floor(Math.random() * descriptions[theme].length)];
-          finalDescription += ${randomDescription} ;
-        }
-      }
+  let finalDescription = "";
+  for (const [theme, count] of Object.entries(themes)) {
+    if (count > 0) {
+      const randomDescription = descriptions[theme][Math.floor(Math.random() * descriptions[theme].length)];
+      finalDescription += `${randomDescription} `;
+    }
+  }
 
-      return finalDescription.trim() || "Această extragere nu are o interpretare directă, dar simbolurile ei pot avea semnificații unice pentru tine. Încearcă să extragi din nou.";
-    },
+  return finalDescription.trim() || "Această extragere nu are o interpretare directă, dar simbolurile ei pot avea semnificații unice pentru tine. Încearcă să extragi din nou.";
+},
     donate() {
       alert("Funcționalitatea de donații va fi activată curând.");
     }
