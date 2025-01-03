@@ -2,14 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "server/index.js",
+      "src": "api/create-checkout-session.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "vite.config.js",
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
     {
-      "src": "/create-checkout-session",
-      "dest": "/server/index.js"
+      "src": "/api/create-checkout-session",
+      "dest": "api/create-checkout-session.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
