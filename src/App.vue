@@ -254,7 +254,7 @@ export default {
     // Metoda de donație cu Stripe
     async donate() {
       try {
-        const response = await fetch("https://citiretarot.vercel.app/server/index.js", {
+        const response = await fetch("/api/create-checkout-session", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
