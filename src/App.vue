@@ -159,10 +159,10 @@ h2 {
 }
 
 .reading {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
   justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
 }
 
 .zodiac-row {
@@ -177,13 +177,6 @@ h2 {
   justify-content: center;
   gap: 20px;
   margin-bottom: 20px;
-}
-
-.default-layout {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
 }
 
 .card {
@@ -201,7 +194,8 @@ h2 {
 }
 
 .card-image {
-  width: 100px;
+  width: 100%;
+  max-width: 100px;
   height: auto;
   border-radius: 10px;
   border: 2px solid #ffd700;
@@ -255,9 +249,6 @@ h2 {
 @media (max-width: 768px) {
   .card-image {
     width: 80px;
-  }
-  .reading-options {
-    gap: 5px;
   }
   .btn {
     padding: 10px 20px;
