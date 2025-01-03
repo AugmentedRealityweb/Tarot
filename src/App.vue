@@ -11,13 +11,23 @@
       <button @click="setMode('horseshoe')" class="btn">Potcoavă</button>
       <button @click="setMode('love')" class="btn">Citire Iubire</button>
     </div>
+
     <div v-if="selectedCards.length" class="reading">
       <h2>Citirea ta:</h2>
       <div v-for="row in splitCards(selectedCards, 5)" :key="row[0].name" class="card-row">
-        <div v-for="card in row" :key="card.name" class="card" @click="revealMeaning(card)">
+        <!-- Observați că aici folosim (card, index) în loc de card simplu -->
+        <div 
+          v-for="(card, index) in row" 
+          :key="card.name" 
+          class="card" 
+          @click="revealMeaning(card)" 
+          :style="{ '--delay': index }"
+        >
           <img :src="card.image" :alt="card.name" class="card-image" />
           <p v-if="!card.revealed" class="hint">Apasă pe carte pentru semnificație</p>
-          <p v-if="card.revealed" class="card-description"><strong>{{ card.name }}:</strong> {{ card.meaning }}</p>
+          <p v-if="card.revealed" class="card-description">
+            <strong>{{ card.name }}:</strong> {{ card.meaning }}
+          </p>
         </div>
       </div>
       <div class="final-description">
@@ -25,6 +35,7 @@
         <p>{{ generateFinalDescription() }}</p>
       </div>
     </div>
+
     <div class="donate">
       <h3>Donează pentru susținerea aplicației:</h3>
       <form @submit.prevent="donate">
@@ -120,109 +131,109 @@ export default {
       });
 
       const descriptions = {
-  schimbare: [
-    "Această extragere indică un puternic element de schimbare în viața ta.",
-    "Schimbările ce urmează pot aduce perspective noi și oportunități neașteptate.",
-    "Pregătește-te pentru o perioadă de tranziție și creștere.",
-    "Transformările din viața ta vor aduce claritate și direcție.",
-    "Un nou început este aproape; îmbrățișează-l cu încredere.",
-    "Schimbările externe reflectă evoluția ta interioară.",
-    "Această etapă va redefini prioritățile și valorile tale.",
-    "Fii deschis la adaptare, pentru că surprizele vor fi pozitive.",
-    "Ceea ce pare instabil acum va deveni fundația viitorului tău.",
-    "Acum este momentul să lași în urmă ceea ce nu mai servește scopului tău."
-  ],
-  iubire: [
-    "Extragerea subliniază aspecte legate de iubire și relații.",
-    "Acest moment este favorabil pentru conexiuni emoționale profunde.",
-    "Iubirea și armonia joacă un rol central în viața ta acum.",
-    "O relație importantă ar putea evolua semnificativ.",
-    "Este un moment propice pentru a întări legăturile existente.",
-    "Dragostea îți oferă lecții valoroase despre tine însuți.",
-    "Relațiile noi ar putea aduce bucurie neașteptată.",
-    "Inima ta este gata să accepte iubirea autentică.",
-    "Empatia și compasiunea îți vor ghida acțiunile în relații.",
-    "Cei dragi îți oferă sprijinul de care ai nevoie acum."
-  ],
-  conflict: [
-    "Un posibil conflict sau tensiune este evident în cărțile extrase.",
-    "Ai putea întâmpina obstacole ce necesită răbdare și înțelepciune.",
-    "Conflictele actuale pot duce la înțelegeri mai profunde.",
-    "Este un moment potrivit să rezolvi tensiunile din viața ta.",
-    "Fii atent la comunicare pentru a evita neînțelegerile.",
-    "Un compromis ar putea fi cheia rezolvării unei dispute.",
-    "Tensiunea prezentă poate fi un catalizator pentru schimbare pozitivă.",
-    "Conflictele te ajută să îți clarifici valorile și limitele.",
-    "Gestionarea calmă a provocărilor va aduce rezultate favorabile.",
-    "Este momentul să confrunți problemele cu curaj și deschidere."
-  ],
-  transformare: [
-    "Transformarea personală este un aspect central al acestei citiri.",
-    "Această perioadă simbolizează renașterea și noile începuturi.",
-    "Te afli într-un proces profund de schimbare interioară.",
-    "Acest moment te invită să renunți la trecut și să îmbrățișezi noul.",
-    "Evoluția ta va atrage noi oportunități și perspective.",
-    "Transformările externe reflectă creșterea ta spirituală.",
-    "Este timpul să eliberezi bagajele emoționale vechi.",
-    "Schimbările actuale îți vor deschide calea către auto-descoperire.",
-    "Fii deschis la reinventare și acceptă necunoscutul.",
-    "Transformările majore aduc claritate asupra scopului tău."
-  ],
-  introspecție: [
-    "Citirea sugerează introspecție și căutarea răspunsurilor interioare.",
-    "Este un moment potrivit pentru auto-reflecție și claritate.",
-    "Explorarea gândurilor interioare îți poate aduce pace și direcție.",
-    "Conectează-te cu tine însuți pentru a descoperi adevărul interior.",
-    "Meditația și liniștea te vor ghida spre răspunsuri importante.",
-    "Acordă-ți timp să înțelegi ce este cu adevărat important pentru tine.",
-    "În tăcere vei găsi răspunsuri la întrebările tale cele mai profunde.",
-    "Reflecția asupra trecutului te va pregăti pentru viitor.",
-    "Auto-cunoașterea este cheia creșterii personale în acest moment.",
-    "Aprofundarea legăturii cu sinele tău va aduce echilibru."
-  ],
-  succes: [
-    "Succesul și realizările sunt bine evidențiate în această extragere.",
-    "Eforturile tale vor fi răsplătite cu rezultate semnificative.",
-    "Te așteaptă o perioadă de recunoaștere și împlinire.",
-    "Munca ta va aduce roade pe măsura eforturilor depuse.",
-    "Realizările tale vor inspira pe cei din jurul tău.",
-    "Succesul tău este rezultatul perseverenței și dedicării.",
-    "Este momentul să sărbătorești victoriile tale recente.",
-    "Recunoașterea publică îți va consolida încrederea în tine.",
-    "Rezultatele pozitive confirmă că ești pe calea cea bună.",
-    "Este o perioadă favorabilă pentru a atinge noi obiective."
-  ],
-  speranță: [
-    "Această extragere aduce un mesaj de optimism și încredere în viitor.",
-    "Chiar și în momentele dificile, există lumină la capătul tunelului.",
-    "Speranța îți va ghida pașii spre noi oportunități.",
-    "Este momentul să privești înainte cu curaj și credință.",
-    "Încrederea în viitor îți aduce puterea de a persevera.",
-    "Lumina speranței strălucește chiar și în cele mai întunecate momente.",
-    "Acest moment te invită să îți menții optimismul și motivația.",
-    "Credința că lucrurile se vor îmbunătăți este cheia succesului tău.",
-    "Chiar și obstacolele actuale vor deschide calea către oportunități noi.",
-    "Rămâi centrat pe posibilitățile pozitive din viața ta."
-  ],
-  vindecare: [
-    "Citirea sugerează o perioadă de regenerare și echilibrare interioară.",
-    "Este timpul să te eliberezi de durerea trecutului.",
-    "Vindecarea te va ajuta să mergi mai departe cu forțe noi.",
-    "Această etapă îți oferă șansa de a găsi pacea interioară.",
-    "Procesele de vindecare îți deschid calea către creștere personală.",
-    "Acceptarea și iertarea sunt esențiale pentru regenerare.",
-    "Acum este momentul să prioritizezi bunăstarea ta emoțională.",
-    "Fii blând cu tine însuți în acest proces de transformare.",
-    "Vindecarea aduce claritate și armonie în viața ta.",
-    "Această perioadă îți oferă oportunitatea de a te reconecta cu tine însuți."
-  ]
-};
+        schimbare: [
+          "Această extragere indică un puternic element de schimbare în viața ta.",
+          "Schimbările ce urmează pot aduce perspective noi și oportunități neașteptate.",
+          "Pregătește-te pentru o perioadă de tranziție și creștere.",
+          "Transformările din viața ta vor aduce claritate și direcție.",
+          "Un nou început este aproape; îmbrățișează-l cu încredere.",
+          "Schimbările externe reflectă evoluția ta interioară.",
+          "Această etapă va redefini prioritățile și valorile tale.",
+          "Fii deschis la adaptare, pentru că surprizele vor fi pozitive.",
+          "Ceea ce pare instabil acum va deveni fundația viitorului tău.",
+          "Acum este momentul să lași în urmă ceea ce nu mai servește scopului tău."
+        ],
+        iubire: [
+          "Extragerea subliniază aspecte legate de iubire și relații.",
+          "Acest moment este favorabil pentru conexiuni emoționale profunde.",
+          "Iubirea și armonia joacă un rol central în viața ta acum.",
+          "O relație importantă ar putea evolua semnificativ.",
+          "Este un moment propice pentru a întări legăturile existente.",
+          "Dragostea îți oferă lecții valoroase despre tine însuți.",
+          "Relațiile noi ar putea aduce bucurie neașteptată.",
+          "Inima ta este gata să accepte iubirea autentică.",
+          "Empatia și compasiunea îți vor ghida acțiunile în relații.",
+          "Cei dragi îți oferă sprijinul de care ai nevoie acum."
+        ],
+        conflict: [
+          "Un posibil conflict sau tensiune este evident în cărțile extrase.",
+          "Ai putea întâmpina obstacole ce necesită răbdare și înțelepciune.",
+          "Conflictele actuale pot duce la înțelegeri mai profunde.",
+          "Este un moment potrivit să rezolvi tensiunile din viața ta.",
+          "Fii atent la comunicare pentru a evita neînțelegerile.",
+          "Un compromis ar putea fi cheia rezolvării unei dispute.",
+          "Tensiunea prezentă poate fi un catalizator pentru schimbare pozitivă.",
+          "Conflictele te ajută să îți clarifici valorile și limitele.",
+          "Gestionarea calmă a provocărilor va aduce rezultate favorabile.",
+          "Este momentul să confrunți problemele cu curaj și deschidere."
+        ],
+        transformare: [
+          "Transformarea personală este un aspect central al acestei citiri.",
+          "Această perioadă simbolizează renașterea și noile începuturi.",
+          "Te afli într-un proces profund de schimbare interioară.",
+          "Acest moment te invită să renunți la trecut și să îmbrățișezi noul.",
+          "Evoluția ta va atrage noi oportunități și perspective.",
+          "Transformările externe reflectă creșterea ta spirituală.",
+          "Este timpul să eliberezi bagajele emoționale vechi.",
+          "Schimbările actuale îți vor deschide calea către auto-descoperire.",
+          "Fii deschis la reinventare și acceptă necunoscutul.",
+          "Transformările majore aduc claritate asupra scopului tău."
+        ],
+        introspecție: [
+          "Citirea sugerează introspecție și căutarea răspunsurilor interioare.",
+          "Este un moment potrivit pentru auto-reflecție și claritate.",
+          "Explorarea gândurilor interioare îți poate aduce pace și direcție.",
+          "Conectează-te cu tine însuți pentru a descoperi adevărul interior.",
+          "Meditația și liniștea te vor ghida spre răspunsuri importante.",
+          "Acordă-ți timp să înțelegi ce este cu adevărat important pentru tine.",
+          "În tăcere vei găsi răspunsuri la întrebările tale cele mai profunde.",
+          "Reflecția asupra trecutului te va pregăti pentru viitor.",
+          "Auto-cunoașterea este cheia creșterii personale în acest moment.",
+          "Aprofundarea legăturii cu sinele tău va aduce echilibru."
+        ],
+        succes: [
+          "Succesul și realizările sunt bine evidențiate în această extragere.",
+          "Eforturile tale vor fi răsplătite cu rezultate semnificative.",
+          "Te așteaptă o perioadă de recunoaștere și împlinire.",
+          "Munca ta va aduce roade pe măsura eforturilor depuse.",
+          "Realizările tale vor inspira pe cei din jurul tău.",
+          "Succesul tău este rezultatul perseverenței și dedicării.",
+          "Este momentul să sărbătorești victoriile tale recente.",
+          "Recunoașterea publică îți va consolida încrederea în tine.",
+          "Rezultatele pozitive confirmă că ești pe calea cea bună.",
+          "Este o perioadă favorabilă pentru a atinge noi obiective."
+        ],
+        speranță: [
+          "Această extragere aduce un mesaj de optimism și încredere în viitor.",
+          "Chiar și în momentele dificile, există lumină la capătul tunelului.",
+          "Speranța îți va ghida pașii spre noi oportunități.",
+          "Este momentul să privești înainte cu curaj și credință.",
+          "Încrederea în viitor îți aduce puterea de a persevera.",
+          "Lumina speranței strălucește chiar și în cele mai întunecate momente.",
+          "Acest moment te invită să îți menții optimismul și motivația.",
+          "Credința că lucrurile se vor îmbunătăți este cheia succesului tău.",
+          "Chiar și obstacolele actuale vor deschide calea către oportunități noi.",
+          "Rămâi centrat pe posibilitățile pozitive din viața ta."
+        ],
+        vindecare: [
+          "Citirea sugerează o perioadă de regenerare și echilibrare interioară.",
+          "Este timpul să te eliberezi de durerea trecutului.",
+          "Vindecarea te va ajuta să mergi mai departe cu forțe noi.",
+          "Această etapă îți oferă șansa de a găsi pacea interioară.",
+          "Procesele de vindecare îți deschid calea către creștere personală.",
+          "Acceptarea și iertarea sunt esențiale pentru regenerare.",
+          "Acum este momentul să prioritizezi bunăstarea ta emoțională.",
+          "Fii blând cu tine însuți în acest proces de transformare.",
+          "Vindecarea aduce claritate și armonie în viața ta.",
+          "Această perioadă îți oferă oportunitatea de a te reconecta cu tine însuți."
+        ]
+      };
 
       let finalDescription = "";
       for (const [theme, count] of Object.entries(themes)) {
         if (count > 0) {
           const randomDescription = descriptions[theme][Math.floor(Math.random() * descriptions[theme].length)];
-          finalDescription += ${randomDescription} ;
+          finalDescription += `${randomDescription} `;
         }
       }
 
@@ -236,6 +247,7 @@ export default {
 </script>
 
 <style>
+/* Fundal și stilizare generală */
 body {
   margin: 0;
   padding: 0;
@@ -263,6 +275,7 @@ h2 {
   color: #ffd700;
 }
 
+/* Butoanele pentru opțiuni de citire */
 .reading-options {
   display: flex;
   flex-wrap: wrap;
@@ -271,6 +284,7 @@ h2 {
   margin-bottom: 20px;
 }
 
+/* Rândurile de cărți */
 .card-row {
   display: flex;
   justify-content: space-between;
@@ -278,6 +292,7 @@ h2 {
   margin-bottom: 5px;
 }
 
+/* Containerul pentru fiecare carte */
 .card {
   display: flex;
   flex-direction: column;
@@ -285,8 +300,19 @@ h2 {
   margin: 0;
   padding: 0;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: fit-content;
+
+  /* Opacitate inițială pentru efectul de "fade in" */
+  opacity: 0;
+  transform: translateY(20px);
+
+  /* Animația */
+  animation: cardEnter 0.5s forwards ease;
+  /* Delay pentru fiecare carte, bazat pe index */
+  animation-delay: calc(var(--delay) * 0.1s);
+
+  /* Efectul de hover deja existent */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -294,6 +320,19 @@ h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Animația propriu-zisă */
+@keyframes cardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Imaginea cărții */
 .card-image {
   width: 50px;
   height: auto;
@@ -301,6 +340,7 @@ h2 {
   border: 1px solid #ffd700;
 }
 
+/* Indicație pentru utilizator când cartea nu e dezvăluită */
 .hint {
   margin-top: 3px;
   font-size: 0.7rem;
@@ -308,6 +348,7 @@ h2 {
   color: #ccc;
 }
 
+/* Descriere carte dezvăluită */
 .card-description {
   margin-top: 5px;
   font-size: 0.8rem;
@@ -324,6 +365,7 @@ h2 {
   font-size: 1rem;
 }
 
+/* Stilizare butoane */
 .btn {
   background: linear-gradient(45deg, #ffcc00, #ff9900);
   color: black;
@@ -342,10 +384,12 @@ h2 {
   transform: translateY(-2px);
 }
 
+/* Secțiunea de donații */
 .donate {
   margin-top: 20px;
 }
 
+/* Stilizare buton donație */
 .donate-btn {
   background: linear-gradient(45deg, #66ff99, #33cc66);
   color: black;
@@ -356,6 +400,7 @@ h2 {
   background: linear-gradient(45deg, #33cc66, #009933);
 }
 
+/* Media queries pentru ecrane mici */
 @media (max-width: 768px) {
   .card-row {
     gap: 1px;
