@@ -13,40 +13,8 @@
     </div>
     <div v-if="selectedCards.length" class="reading">
       <h2>Citirea ta:</h2>
-      <div v-if="mode === 'zodiac'">
-        <div class="zodiac-row">
-          <div v-for="(card, index) in selectedCards.slice(0, 6)" :key="'top-' + index" class="card" @click="revealMeaning(card)">
-            <img :src="card.image" :alt="card.name" class="card-image" />
-            <p v-if="!card.revealed" class="hint">Apasă pe carte pentru semnificație</p>
-            <p v-if="card.revealed" class="card-description"><strong>{{ card.name }}:</strong> {{ card.meaning }}</p>
-          </div>
-        </div>
-        <div class="zodiac-row">
-          <div v-for="(card, index) in selectedCards.slice(6, 12)" :key="'bottom-' + index" class="card" @click="revealMeaning(card)">
-            <img :src="card.image" :alt="card.name" class="card-image" />
-            <p v-if="!card.revealed" class="hint">Apasă pe carte pentru semnificație</p>
-            <p v-if="card.revealed" class="card-description"><strong>{{ card.name }}:</strong> {{ card.meaning }}</p>
-          </div>
-        </div>
-      </div>
-      <div v-else-if="mode === 'celtic-cross'">
-        <div class="celtic-row">
-          <div v-for="(card, index) in selectedCards.slice(0, 5)" :key="'top-' + index" class="card" @click="revealMeaning(card)">
-            <img :src="card.image" :alt="card.name" class="card-image" />
-            <p v-if="!card.revealed" class="hint">Apasă pe carte pentru semnificație</p>
-            <p v-if="card.revealed" class="card-description"><strong>{{ card.name }}:</strong> {{ card.meaning }}</p>
-          </div>
-        </div>
-        <div class="celtic-row">
-          <div v-for="(card, index) in selectedCards.slice(5, 10)" :key="'bottom-' + index" class="card" @click="revealMeaning(card)">
-            <img :src="card.image" :alt="card.name" class="card-image" />
-            <p v-if="!card.revealed" class="hint">Apasă pe carte pentru semnificație</p>
-            <p v-if="card.revealed" class="card-description"><strong>{{ card.name }}:</strong> {{ card.meaning }}</p>
-          </div>
-        </div>
-      </div>
-      <div v-else class="default-layout">
-        <div v-for="(card, index) in selectedCards" :key="index" class="card" @click="revealMeaning(card)">
+      <div v-for="row in splitCards(selectedCards, 5)" :key="row[0].name" class="card-row">
+        <div v-for="card in row" :key="card.name" class="card" @click="revealMeaning(card)">
           <img :src="card.image" :alt="card.name" class="card-image" />
           <p v-if="!card.revealed" class="hint">Apasă pe carte pentru semnificație</p>
           <p v-if="card.revealed" class="card-description"><strong>{{ card.name }}:</strong> {{ card.meaning }}</p>
@@ -115,6 +83,13 @@ export default {
     revealMeaning(card) {
       card.revealed = true;
     },
+    splitCards(cards, cardsPerRow) {
+      const rows = [];
+      for (let i = 0; i < cards.length; i += cardsPerRow) {
+        rows.push(cards.slice(i, i + cardsPerRow));
+      }
+      return rows;
+    },
     donate() {
       alert("Funcționalitatea de donații va fi activată curând.");
     }
@@ -158,32 +133,18 @@ h2 {
   margin-bottom: 20px;
 }
 
-.reading {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 10px;
-  justify-content: center;
-}
-
-.zodiac-row {
+.card-row {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-.celtic-row {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px;
+  margin: 5px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -194,8 +155,7 @@ h2 {
 }
 
 .card-image {
-  width: 100%;
-  max-width: 100px;
+  width: 80px;
   height: auto;
   border-radius: 10px;
   border: 2px solid #ffd700;
@@ -203,14 +163,14 @@ h2 {
 
 .hint {
   margin-top: 5px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-style: italic;
   color: #ccc;
 }
 
 .card-description {
   margin-top: 10px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -218,8 +178,8 @@ h2 {
   background: linear-gradient(45deg, #ffcc00, #ff9900);
   color: black;
   border: none;
-  padding: 12px 25px;
-  font-size: 1rem;
+  padding: 10px 20px;
+  font-size: 0.9rem;
   font-weight: bold;
   border-radius: 25px;
   cursor: pointer;
@@ -247,12 +207,15 @@ h2 {
 }
 
 @media (max-width: 768px) {
+  .card-row {
+    gap: 3px;
+  }
   .card-image {
-    width: 80px;
+    width: 70px;
   }
   .btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    padding: 8px 15px;
+    font-size: 0.8rem;
   }
 }
 </style>
