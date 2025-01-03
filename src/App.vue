@@ -119,17 +119,66 @@ export default {
         if (card.meaning.includes("vindecare")) themes.vindecare++;
       });
 
-      const descriptions = [];
-      if (themes.schimbare) descriptions.push(`Această extragere indică un puternic element de schimbare în viața ta.`);
-      if (themes.iubire) descriptions.push(`Extragerea subliniază aspecte legate de iubire și relații.`);
-      if (themes.conflict) descriptions.push(`Un posibil conflict sau tensiune este evident în cărțile extrase.`);
-      if (themes.transformare) descriptions.push(`Transformarea personală este un aspect central al acestei citiri.`);
-      if (themes.introspecție) descriptions.push(`Citirea sugerează introspecție și căutarea răspunsurilor interioare.`);
-      if (themes.succes) descriptions.push(`Succesul și realizările sunt bine evidențiate în această extragere.`);
-      if (themes.speranță) descriptions.push(`Această extragere aduce un mesaj de optimism și încredere în viitor.`);
-      if (themes.vindecare) descriptions.push(`Citirea sugerează o perioadă de regenerare și echilibrare interioară.`);
+      const descriptions = {
+        schimbare: [
+          "Această extragere indică un puternic element de schimbare în viața ta.",
+          "Schimbările ce urmează pot aduce perspective noi și oportunități neașteptate.",
+          "Pregătește-te pentru o perioadă de tranziție și creștere.",
+          "Transformările din viața ta vor aduce claritate și direcție."
+        ],
+        iubire: [
+          "Extragerea subliniază aspecte legate de iubire și relații.",
+          "Acest moment este favorabil pentru conexiuni emoționale profunde.",
+          "Iubirea și armonia joacă un rol central în viața ta acum.",
+          "O relație importantă ar putea evolua semnificativ."
+        ],
+        conflict: [
+          "Un posibil conflict sau tensiune este evident în cărțile extrase.",
+          "Ai putea întâmpina obstacole ce necesită răbdare și înțelepciune.",
+          "Conflictele actuale pot duce la înțelegeri mai profunde.",
+          "Este un moment potrivit să rezolvi tensiunile din viața ta."
+        ],
+        transformare: [
+          "Transformarea personală este un aspect central al acestei citiri.",
+          "Această perioadă simbolizează renașterea și noile începuturi.",
+          "Te afli într-un proces profund de schimbare interioară.",
+          "Acest moment te invită să renunți la trecut și să îmbrățișezi noul."
+        ],
+        introspecție: [
+          "Citirea sugerează introspecție și căutarea răspunsurilor interioare.",
+          "Este un moment potrivit pentru auto-reflecție și claritate.",
+          "Explorarea gândurilor interioare îți poate aduce pace și direcție.",
+          "Conectează-te cu tine însuți pentru a descoperi adevărul interior."
+        ],
+        succes: [
+          "Succesul și realizările sunt bine evidențiate în această extragere.",
+          "Eforturile tale vor fi răsplătite cu rezultate semnificative.",
+          "Te așteaptă o perioadă de recunoaștere și împlinire.",
+          "Munca ta va aduce roade pe măsura eforturilor depuse."
+        ],
+        speranță: [
+          "Această extragere aduce un mesaj de optimism și încredere în viitor.",
+          "Chiar și în momentele dificile, există lumină la capătul tunelului.",
+          "Speranța îți va ghida pașii spre noi oportunități.",
+          "Este momentul să privești înainte cu curaj și credință."
+        ],
+        vindecare: [
+          "Citirea sugerează o perioadă de regenerare și echilibrare interioară.",
+          "Este timpul să te eliberezi de durerea trecutului.",
+          "Vindecarea te va ajuta să mergi mai departe cu forțe noi.",
+          "Această etapă îți oferă șansa de a găsi pacea interioară."
+        ]
+      };
 
-      return descriptions.join(' ');
+      let finalDescription = "";
+      for (const [theme, count] of Object.entries(themes)) {
+        if (count > 0) {
+          const randomDescription = descriptions[theme][Math.floor(Math.random() * descriptions[theme].length)];
+          finalDescription += `${randomDescription} `;
+        }
+      }
+
+      return finalDescription.trim();
     },
     donate() {
       alert("Funcționalitatea de donații va fi activată curând.");
