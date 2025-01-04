@@ -297,6 +297,7 @@ h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5px;
   color: #e3ab12;
+  text-align: center;
 }
 
 h2 {
@@ -307,6 +308,7 @@ h2 {
   h3 {
   margin-top: 20px;
   color: #e3ab12;
+  text-align: center;
 }
 /* Butoanele pentru opțiuni de citire */
 .reading-options {
