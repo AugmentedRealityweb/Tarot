@@ -423,6 +423,7 @@ h2 {
   background: linear-gradient(45deg, #66ff99, #33cc66);
   color: black;
   font-weight: bold;
+  text-align: center;
 }
 
 .donate-btn:hover {
