@@ -278,7 +278,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%; /* Fixează înălțimea la 100% din fereastra browserului */
-  background: url('https://i.giphy.com/SrWh9peE9r1MTVr8aQ.webp') no-repeat center center fixed;
+  background: url('https://i.giphy.com/jiShRuttUxmgaOifOK.webp') no-repeat center center fixed;
   background-size: cover;
 }
 
