@@ -305,17 +305,18 @@ h2 {
   color: #e3ab12;
 }
 
-  h3 {
+h3 {
   margin-top: 20px;
   color: #e3ab12;
   text-align: center;
 }
 
-  h4 {
+h4 {
   margin-top: 10px;
   color: #e3ab12;
   text-align: center;
 }
+
 /* Butoanele pentru opțiuni de citire */
 .reading-options {
   display: flex;
@@ -354,7 +355,7 @@ h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Animația propriu-zisă */
+/* Animația propriu-zisă pentru intrarea cărților */
 @keyframes cardEnter {
   0% {
     opacity: 0;
@@ -425,12 +426,26 @@ h2 {
   text-align: center;
 }
 
-/* Stilizare buton donație */
+/* Animație de "shake" la fiecare 6 secunde pentru butonul Donează */
+@keyframes donateShake {
+  0%, 10%, 100% {
+    transform: translateX(0);
+  }
+  2%, 6% {
+    transform: translateX(-5px);
+  }
+  4%, 8% {
+    transform: translateX(5px);
+  }
+}
+
+/* Stilizare buton donație + animație shake */
 .donate-btn {
   background: linear-gradient(45deg, #66ff99, #33cc66);
   color: black;
   font-weight: bold;
   text-align: center;
+  animation: donateShake 6s infinite; /* rulează animația "shake" la fiecare 6 secunde */
 }
 
 .donate-btn:hover {
