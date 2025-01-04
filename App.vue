@@ -290,15 +290,19 @@ html, body {
 
 h1 {
   font-size: 2.5rem;
-  margin-bottom: 30px;
+  margin-bottom: 90px;
   color: #e3ab12;
 }
 
 h2 {
-  margin-top: 30px;
+  margin-top: 90px;
   color: #e3ab12;
 }
 
+  h3 {
+  margin-top: 30px;
+  color: #e3ab12;
+}
 /* Butoanele pentru opțiuni de citire */
 .reading-options {
   display: flex;
@@ -375,7 +379,7 @@ h2 {
 }
 
 .final-description {
-  margin-top: 30px;
+  margin-top: 90px;
   padding: 20px;
   background: rgba(0, 0, 0, 0.7);
   color: #e87b41;
@@ -404,7 +408,7 @@ h2 {
 
 /* Secțiunea de donații */
 .donate {
-  margin-top: 30px;
+  margin-top: 90px;
 }
 
 /* Stilizare buton donație */
