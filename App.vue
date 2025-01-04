@@ -23,6 +23,7 @@
           :style="{ '--delay': index }"
         >
           <img :src="card.image" :alt="card.name" class="card-image" />
+          <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
           <p v-if="!card.revealed" class="hint">Apasă pe carte pentru semnificație</p>
           <p v-if="card.revealed" class="card-description">
             <strong>{{ card.name }}:</strong> {{ card.meaning }}
