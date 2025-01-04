@@ -312,7 +312,7 @@ h2 {
 }
 
   h4 {
-  margin-top: 5px;
+  margin-top: 10px;
   color: #e3ab12;
   text-align: center;
 }
