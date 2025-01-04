@@ -87,19 +87,24 @@ export default {
       this.generateReading();
     },
     // Generarea unui număr de cărți în funcție de tipul de citire
-    generateReading() {
-      let numCards = 1;
-      if (this.mode === '3-cards') numCards = 3;
-      else if (this.mode === 'celtic-cross') numCards = 10;
-      else if (this.mode === 'shadow') numCards = 5;
-      else if (this.mode === 'zodiac') numCards = 12;
-      else if (this.mode === '7-cards') numCards = 7;
-      else if (this.mode === 'horseshoe') numCards = 7;
-      else if (this.mode === 'love') numCards = 6;
+   generateReading() {
+  // Resetează starea "revealed" pentru toate cărțile
+  this.cards.forEach((card) => {
+    card.revealed = false;
+  });
 
-      const shuffled = this.cards.sort(() => 0.5 - Math.random());
-      this.selectedCards = shuffled.slice(0, numCards);
-    },
+  let numCards = 1;
+  if (this.mode === '3-cards') numCards = 3;
+  else if (this.mode === 'celtic-cross') numCards = 10;
+  else if (this.mode === 'shadow') numCards = 5;
+  else if (this.mode === 'zodiac') numCards = 12;
+  else if (this.mode === '7-cards') numCards = 7;
+  else if (this.mode === 'horseshoe') numCards = 7;
+  else if (this.mode === 'love') numCards = 6;
+
+  const shuffled = this.cards.sort(() => 0.5 - Math.random());
+  this.selectedCards = shuffled.slice(0, numCards);
+},
     // Marchează cartea ca fiind dezvăluită
     revealMeaning(card) {
       card.revealed = true;
