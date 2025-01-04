@@ -290,13 +290,13 @@ html, body {
 
 h1 {
   font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #ffcc00;
+  margin-bottom: 30px;
+  color: #e3ab12;
 }
 
 h2 {
-  margin-top: 20px;
-  color: #ffd700;
+  margin-top: 30px;
+  color: #e3ab12;
 }
 
 /* Butoanele pentru opțiuni de citire */
@@ -371,14 +371,15 @@ h2 {
   font-size: 0.8rem;
   font-weight: 500;
   text-align: center;
+  color: #e87b41;
 }
 
 .final-description {
-  margin-top: 20px;
-  padding: 10px;
+  margin-top: 30px;
+  padding: 20px;
   background: rgba(0, 0, 0, 0.7);
-  color: #ffd700;
-  border-radius: 10px;
+  color: #e87b41;
+  border-radius: 20px;
   font-size: 1rem;
 }
 
@@ -403,7 +404,7 @@ h2 {
 
 /* Secțiunea de donații */
 .donate {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 /* Stilizare buton donație */
