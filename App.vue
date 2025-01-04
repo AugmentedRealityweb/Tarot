@@ -23,7 +23,6 @@
           :style="{ '--delay': index }"
         >
           <img :src="card.image" :alt="card.name" class="card-image" />
-          <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
           <p v-if="!card.revealed" class="hint">Apasă pe carte pentru semnificație</p>
           <p v-if="card.revealed" class="card-description">
             <strong>{{ card.name }}:</strong> {{ card.meaning }}
@@ -283,6 +282,12 @@ body {
   font-family: 'Poppins', sans-serif;
   color: white;
   text-align: center;
+  overflow-x: hidden; /* Previne scroll-ul pe orizontală */
+}
+
+#app {
+  max-width: 100%; /* Limitează lățimea la 100% */
+  overflow-x: hidden; /* Ascunde orice depășire pe axa orizontală */
 }
 
 #app {
