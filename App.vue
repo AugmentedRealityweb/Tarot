@@ -274,26 +274,19 @@ export default {
 
 <style>
 /* Fundal și stilizare generală */
-body {
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%; /* Fixează înălțimea la 100% din fereastra browserului */
+  overflow: hidden; /* Ascunde orice scroll pe verticală sau orizontală */
   background: url('https://i.giphy.com/SrWh9peE9r1MTVr8aQ.webp') no-repeat center center fixed;
   background-size: cover;
-  font-family: 'Poppins', sans-serif;
-  color: white;
-  text-align: center;
+}
+
+#app {
+  height: 100%; /* Asigură că aplicația ocupă întreaga înălțime a paginii */
+  overflow-y: auto; /* Activează doar scroll-ul pe verticală pentru conținut */
   overflow-x: hidden; /* Previne scroll-ul pe orizontală */
-}
-
-#app {
-  max-width: 100%; /* Limitează lățimea la 100% */
-  overflow-x: hidden; /* Ascunde orice depășire pe axa orizontală */
-}
-
-#app {
-  padding: 20px;
-  max-width: 600px;
-  margin: 20px auto;
 }
 
 h1 {
