@@ -40,7 +40,7 @@
       <h3>Donează pentru susținerea aplicației:</h3>
       <!-- Folosim un form, dar metoda donate() trimite către Stripe -->
       <form @submit.prevent="donate">
-        <button class="btn donate-btn">Donează</button>
+        <button class="btn donate-btn">Donează 5RON</button>
       </form>
     </div>
   </div>
@@ -416,6 +416,7 @@ h2 {
 /* Secțiunea de donații */
 .donate {
   margin-top: 90px;
+  text-align: center;
 }
 
 /* Stilizare buton donație */
@@ -428,6 +429,7 @@ h2 {
 
 .donate-btn:hover {
   background: linear-gradient(45deg, #33cc66, #009933);
+  text-align: center;
 }
 
 /* Media queries pentru ecrane mici */
