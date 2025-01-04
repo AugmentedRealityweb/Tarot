@@ -37,7 +37,7 @@
     </div>
 
     <div class="donate">
-      <h3>Donează pentru susținerea aplicației:</h3>
+      <h4>Donează pentru susținerea aplicației:</h4>
       <!-- Folosim un form, dar metoda donate() trimite către Stripe -->
       <form @submit.prevent="donate">
         <button class="btn donate-btn">Donează 5RON</button>
@@ -310,6 +310,12 @@ h2 {
   color: #e3ab12;
   text-align: center;
 }
+
+  h4 {
+  margin-top: 5px;
+  color: #e3ab12;
+  text-align: center;
+}
 /* Butoanele pentru opțiuni de citire */
 .reading-options {
   display: flex;
@@ -387,7 +393,7 @@ h2 {
 
 .final-description {
   margin-top: 0.5px;
-  padding: 20px;
+  padding: 15px;
   background: rgba(0, 0, 0, 0.7);
   color: #e87b41;
   border-radius: 20px;
@@ -415,7 +421,7 @@ h2 {
 
 /* Secțiunea de donații */
 .donate {
-  margin-top: 90px;
+  margin-top: 5px;
   text-align: center;
 }
 
