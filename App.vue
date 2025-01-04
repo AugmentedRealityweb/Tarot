@@ -290,17 +290,17 @@ html, body {
 
 h1 {
   font-size: 2.5rem;
-  margin-bottom: 90px;
+  margin-bottom: 0.5px;
   color: #e3ab12;
 }
 
 h2 {
-  margin-top: 90px;
+  margin-top: 0.5px;
   color: #e3ab12;
 }
 
   h3 {
-  margin-top: 30px;
+  margin-top: 20px;
   color: #e3ab12;
 }
 /* Butoanele pentru opțiuni de citire */
@@ -379,7 +379,7 @@ h2 {
 }
 
 .final-description {
-  margin-top: 90px;
+  margin-top: 0.5px;
   padding: 20px;
   background: rgba(0, 0, 0, 0.7);
   color: #e87b41;
